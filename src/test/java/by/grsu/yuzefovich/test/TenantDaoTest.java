@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import by.grsu.yuzefovich.dataaccess.impl.TenantDao;
 import by.grsu.yuzefovich.datamodel.Tenant;
+import by.grsu.yuzefovich.datamodel.UserAccessData;
 import junit.framework.Assert;
 
 public class TenantDaoTest {
@@ -54,6 +55,7 @@ public class TenantDaoTest {
 		final Tenant newTenant = new Tenant();
 		newTenant.setName("Alex");
 		newTenant.addRequest("typeOfWork", 15, 10);
+		newTenant.setUserAccessData(new UserAccessData("user", "user"));
 		tenantDao.saveNew(newTenant);
 		return newTenant;
 	}

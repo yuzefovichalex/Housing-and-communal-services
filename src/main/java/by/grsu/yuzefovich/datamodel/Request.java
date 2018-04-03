@@ -6,6 +6,7 @@ public class Request {
 	private int scopeOfWork;
 	private int leadTime;
 	private Brigade brigade;
+	private boolean isAccepted;
 	
 	public String getTypeOfWork() {
 		return typeOfWork;
@@ -39,10 +40,19 @@ public class Request {
 		this.brigade = brigade;
 	}
 	
-	public Request(String typeOfWork, int scopeOfWork, int leadTime) {
+	public boolean getIsAccepted() {
+		return isAccepted;
+	}
+	
+	public void setIsAccepted(final boolean isAccepted) {
+		this.isAccepted = isAccepted;
+	}
+	
+	public Request(String typeOfWork, int scopeOfWork, int leadTime, boolean isAccepted) {
 		this.typeOfWork = typeOfWork;
 		this.scopeOfWork = scopeOfWork;
 		this.leadTime = leadTime;
+		this.isAccepted = isAccepted;
 		brigade = null;
 	}
 	public Request(String typeOfWork, int scopeOfWork, int leadTime, int numberOfWorkers) {

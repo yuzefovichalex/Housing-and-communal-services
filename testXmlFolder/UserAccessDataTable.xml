@@ -1,0 +1,14 @@
+<by.grsu.yuzefovich.table.UserAccessDataTable>
+  <rows>
+    <by.grsu.yuzefovich.datamodel.UserAccessData>
+      <id>23927578536199</id>
+      <login>user</login>
+      <password>user</password>
+    </by.grsu.yuzefovich.datamodel.UserAccessData>
+    <by.grsu.yuzefovich.datamodel.UserAccessData>
+      <id>23927580963769</id>
+      <login>user1</login>
+      <password>user1</password>
+    </by.grsu.yuzefovich.datamodel.UserAccessData>
+  </rows>
+</by.grsu.yuzefovich.table.UserAccessDataTable>

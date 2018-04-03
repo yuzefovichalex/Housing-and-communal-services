@@ -1,13 +1,14 @@
 package by.grsu.yuzefovich.datamodel;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Tenant {
+public class Tenant implements Serializable {
 	
 	private String name;
 	private Long id;
-	private ArrayList<Request> acceptedRequests = new ArrayList<Request>();
-	private ArrayList<Request> newRequests = new ArrayList<Request>();
+	private UserAccessData userAccessData;
+	private ArrayList<Request> requests = new ArrayList<Request>();
 	
 	public String getName() {
 		return name;
@@ -25,24 +26,24 @@ public class Tenant {
 		this.id = id;
 	}
 	
-	public ArrayList<Request> getNewRequests() {
-		return newRequests;
+	public ArrayList<Request> getRequests() {
+		return requests;
 	}
 	
-	public void setNewRequests(final ArrayList<Request> newRequests) {
-		this.newRequests = newRequests;
+	public void setRequests(final ArrayList<Request> requests) {
+		this.requests = requests;
 	}
 	
-	public ArrayList<Request> getAcceptedRequests() {
-		return acceptedRequests;
+	public UserAccessData getUserAccessData() {
+		return userAccessData;
 	}
 	
-	public void setAcceptedRequests(final ArrayList<Request> acceptedRequests) {
-		this.acceptedRequests = acceptedRequests;
+	public void setUserAccessData(UserAccessData userAccessData) {
+		this.userAccessData = userAccessData;
 	}
 	
 	public void addRequest(String typeOfWork, int scopeOfWork, int leadTime) {
-		newRequests.add(new Request(typeOfWork, scopeOfWork, leadTime));
+		requests.add(new Request(typeOfWork, scopeOfWork, leadTime, false));
 	}
 
 }

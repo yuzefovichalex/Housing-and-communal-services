@@ -35,8 +35,7 @@ public class TenantDao extends AbstractDao<TenantTable, Tenant> {
 			if (row.getId().equals(entity.getId())) {
 				// found!!!
 				// copy data
-				row.setNewRequests(entity.getNewRequests());
-				row.setAcceptedRequests(entity.getAcceptedRequests());
+				row.setRequests(entity.getRequests());
 				break;
 			}
 		}

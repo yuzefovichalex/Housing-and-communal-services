@@ -1,0 +1,36 @@
+<by.grsu.yuzefovich.table.TenantTable>
+  <rows>
+    <by.grsu.yuzefovich.datamodel.Tenant>
+      <name>Alex</name>
+      <id>27609726265535</id>
+      <userAccessData>
+        <login>user</login>
+        <password>user</password>
+      </userAccessData>
+      <requests>
+        <by.grsu.yuzefovich.datamodel.Request>
+          <typeOfWork>typeOfWork</typeOfWork>
+          <scopeOfWork>15</scopeOfWork>
+          <leadTime>10</leadTime>
+          <isAccepted>false</isAccepted>
+        </by.grsu.yuzefovich.datamodel.Request>
+      </requests>
+    </by.grsu.yuzefovich.datamodel.Tenant>
+    <by.grsu.yuzefovich.datamodel.Tenant>
+      <name>Dima</name>
+      <id>27609729478244</id>
+      <userAccessData>
+        <login>user1</login>
+        <password>user1</password>
+      </userAccessData>
+      <requests>
+        <by.grsu.yuzefovich.datamodel.Request>
+          <typeOfWork>typeOfWork1</typeOfWork>
+          <scopeOfWork>15</scopeOfWork>
+          <leadTime>10</leadTime>
+          <isAccepted>false</isAccepted>
+        </by.grsu.yuzefovich.datamodel.Request>
+      </requests>
+    </by.grsu.yuzefovich.datamodel.Tenant>
+  </rows>
+</by.grsu.yuzefovich.table.TenantTable>
