@@ -1,10 +1,28 @@
 package by.grsu.yuzefovich.datamodel;
 
-public class Brigade {
+import java.io.Serializable;
+
+public class Brigade extends AbstractModel implements Serializable{
 	
-	private int numberOfWorkers;
+	private Integer numberOfWorkers;
 	
-	public Brigade(int numberOfWorkers) {
+	public Integer getNumberOfWorkers() {
+		return numberOfWorkers;
+	}
+
+	public void setNumberOfWorkers(Integer numberOfWorkers) {
+		this.numberOfWorkers = numberOfWorkers;
+	}
+
+	public Brigade (Long id) {
+		this.setId(id);
+	}
+	
+	public Brigade() {
+		
+	}
+	
+	public Brigade(Integer numberOfWorkers) {
 		this.numberOfWorkers = numberOfWorkers;
 	}
 

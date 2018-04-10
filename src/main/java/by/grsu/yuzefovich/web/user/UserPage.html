@@ -1,7 +1,8 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
-    <h2>Welcome USER!</h2>
+    <center><h2 wicket:id="helloMessage">Welcome USER!</h2></center>
     <p>
-	<wicket:link><a href="AddingRequestPage.html">Add Request</a></wicket:link>
-    <wicket:link><a href="SignOut.html">Sign Out</a></wicket:link>
+	<center><a wicket:id="addRequest">Add Request</a></center>
+	<center><a wicket:id="showRequests">Show My Requests</a></center>
+    <center><wicket:link><a href="SignOut.html">Sign Out</a></wicket:link></center>
     </p>    
 </wicket:extend>

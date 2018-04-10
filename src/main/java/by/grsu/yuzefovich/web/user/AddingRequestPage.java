@@ -13,26 +13,50 @@ import org.apache.wicket.model.ResourceModel;
 
 
 import by.grsu.yuzefovich.dataaccess.impl.TenantDao;
+import by.grsu.yuzefovich.dataaccess.impl.UserAccessDataDao;
+import by.grsu.yuzefovich.dataaccess.impl.RequestDao;
 import by.grsu.yuzefovich.datamodel.Tenant;
+import by.grsu.yuzefovich.datamodel.UserAccessData;
 import by.grsu.yuzefovich.datamodel.Request;
 
-public class AddingRequestPage extends UserPage {
+public class AddingRequestPage extends WebPage {
 	
 	private TenantDao tenantDao;
-
 	private Tenant tenant;
+	private RequestDao requestDao;
+	private Request request;
+	private String username;
+	private String password;
+	private String returnTo;
 
-	public AddingRequestPage() {
-		super();		
+	public AddingRequestPage(String userName, String passWord, String returnTo) {
+		super();
+		this.username = userName;
+		this.password = passWord;
+		this.returnTo = returnTo;
 		tenantDao = new TenantDao("testXmlFolder");
-		tenant = tenantDao.getAll().get(0);
+		requestDao = new RequestDao("testXmlFolder");
+		
+		Long accessDataId = 0l;
+		UserAccessDataDao userAccessDataDao = new UserAccessDataDao("testXmlFolder");
+		for(UserAccessData userAccessData : userAccessDataDao.getAll())
+			if(userAccessData.getLogin().equals(username) && userAccessData.getPassword().equals(password)) {
+				accessDataId = userAccessData.getId();
+				break;
+			}				
+		
+		for(Tenant tenant : tenantDao.getAll())
+			if (tenant.getUserAccessData().getId().equals(accessDataId)) {
+				this.tenant = tenant;
+			}
+		request = new Request();
 	}
 
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
 
-		Form<Tenant> form = new Form<Tenant>("form", new CompoundPropertyModel<Tenant>(tenant));
+		Form<Request> form = new Form<Request>("form", new CompoundPropertyModel<Request>(request));
 		add(form);
 
 		TextField<String> typeOfWorkField = new TextField<>("typeOfWork");
@@ -56,9 +80,13 @@ public class AddingRequestPage extends UserPage {
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-				//tenant.addRequest(typeOfWorkField.toString(), scopeOfWorkField.toString(), leadTimeField.toString());
-				tenantDao.update(tenant);
-				setResponsePage(new UserPage());
+				request.setIsAccepted(false);
+				requestDao.saveNew(request);
+				tenantDao.updateRequests(tenant, request.getId());
+				if (returnTo == "UserPage")
+				    setResponsePage(new UserPage(username, password));
+				if (returnTo == "ShowRequestsPage")
+					setResponsePage(new ShowRequestsPage(username, password));
 			}
 		});
 
@@ -66,7 +94,10 @@ public class AddingRequestPage extends UserPage {
 
 			@Override
 			public void onClick() {
-				setResponsePage(new UserPage());
+				if (returnTo == "UserPage")
+				    setResponsePage(new UserPage(username, password));
+				if (returnTo == "ShowRequestsPage")
+					setResponsePage(new ShowRequestsPage(username, password));
 			}
 		});
 		add(new FeedbackPanel("feedback"));

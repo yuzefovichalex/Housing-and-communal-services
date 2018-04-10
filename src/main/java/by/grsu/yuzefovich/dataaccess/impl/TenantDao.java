@@ -6,6 +6,8 @@ import java.util.List;
 import by.grsu.yuzefovich.dataaccess.AbstractDao;
 import by.grsu.yuzefovich.datamodel.Tenant;
 import by.grsu.yuzefovich.table.TenantTable;
+import by.grsu.yuzefovich.datamodel.Request;
+import by.grsu.yuzefovich.datamodel.UserAccessData;
 
 public class TenantDao extends AbstractDao<TenantTable, Tenant> {
 
@@ -25,6 +27,19 @@ public class TenantDao extends AbstractDao<TenantTable, Tenant> {
 		serializeToXml(tenantTable);
 		//
 	}
+	
+	public void saveNew(Tenant newTenant, UserAccessData userAccessData) {
+		// set ID
+		newTenant.setId(getNextId());
+		newTenant.getUserAccessData().setId(userAccessData.getId());
+		// get existing data
+		final TenantTable tenantTable = deserializeFromXml();
+		// add new row
+		tenantTable.getRows().add(newTenant);
+		// save data
+		serializeToXml(tenantTable);
+		//
+	}
 
 	@Override
 	public void update(Tenant entity) {
@@ -36,6 +51,22 @@ public class TenantDao extends AbstractDao<TenantTable, Tenant> {
 				// found!!!
 				// copy data
 				row.setRequests(entity.getRequests());
+				break;
+			}
+		}
+		// save updated table
+		serializeToXml(tenantTable);
+	}
+	
+	public void updateRequests(Tenant entity, Long id) {
+		// get existing data
+		final TenantTable tenantTable = deserializeFromXml();
+		// find by ID
+		for (final Tenant row : tenantTable.getRows()) {
+			if (row.getId().equals(entity.getId())) {
+				// found!!!
+				// copy data
+				row.getRequests().add(new Request(id));
 				break;
 			}
 		}

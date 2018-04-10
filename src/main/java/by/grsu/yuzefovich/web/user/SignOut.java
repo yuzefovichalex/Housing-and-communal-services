@@ -17,6 +17,7 @@ public class SignOut extends WebPage
     public SignOut(final PageParameters parameters)
     {    	
         getSession().invalidate();
-        throw new RestartResponseException(HomePage.class);
+        setResponsePage(new HomePage());
+        //throw new RestartResponseException(HomePage.class);
     }
 }

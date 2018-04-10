@@ -2,7 +2,9 @@ package by.grsu.yuzefovich.web.authentication;
 
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.Request;
+import org.apache.wicket.Component;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
@@ -44,7 +46,6 @@ public class MyAuthenticatedWebSession extends AuthenticatedWebSession
     public boolean authenticate(final String username, final String password)
     {
         final String adminData = "admin";
-        final String userData = "user";
         UserAccessDataDao userAccessDataDao = new UserAccessDataDao("testXmlFolder");
         List<UserAccessData> users = userAccessDataDao.getAll();
         
@@ -55,10 +56,7 @@ public class MyAuthenticatedWebSession extends AuthenticatedWebSession
         else {
         	for (UserAccessData userAccessData : users)
         		if (userAccessData.getLogin().equals(username) && userAccessData.getPassword().equals(password)) {
-        			//PageParameters pageParameters = new PageParameters();
-                	//pageParameters.add("username", username);
-                	//pageParameters.add("password", password);               	
-        			throw new RestartResponseException(UserPage.class);
+        			throw new RestartResponseException(new UserPage(username, password));
         		}        	        
         }
         return false;

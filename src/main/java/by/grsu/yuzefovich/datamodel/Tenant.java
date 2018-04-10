@@ -3,10 +3,9 @@ package by.grsu.yuzefovich.datamodel;
 import java.util.ArrayList;
 import java.io.Serializable;
 
-public class Tenant implements Serializable {
+public class Tenant extends AbstractModel implements Serializable {
 	
 	private String name;
-	private Long id;
 	private UserAccessData userAccessData;
 	private ArrayList<Request> requests = new ArrayList<Request>();
 	
@@ -16,14 +15,6 @@ public class Tenant implements Serializable {
 	
 	public void setName(final String name) {
 		this.name = name;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(final Long id) {
-		this.id = id;
 	}
 	
 	public ArrayList<Request> getRequests() {

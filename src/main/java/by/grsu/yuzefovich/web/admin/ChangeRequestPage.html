@@ -1,12 +1,14 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
 <meta charset="utf-8" />
-<title>Add Request</title>
+<title>Change Request</title>
 </head>
 <body>
+<form wicket:id="form">
+<center><table>
 
-	<form wicket:id="form">
-		<center><table>
+	<form wicket:id="form1">
+		
 			<tr>
 				<td><b>Type of work:</b></td>
 				<td><input type="text" wicket:id="typeOfWork" /></td>
@@ -19,8 +21,19 @@
 				<td><b>Lead time:</b></td>
 				<td><input type="text" wicket:id="leadTime" /></td>
 			</tr>
-		</table></center>
-		<center><div>
+		
+	</form>
+	<form wicket:id="form2">
+		
+			<tr>
+				<td><b>Number of workers:</b></td>
+				<td><input type="text" wicket:id="numberOfWorkers" /></td>
+			</tr>
+		
+		
+	</form>
+	</table></center>
+	<center><div>
 			<p>
 				<button type="submit" wicket:id="save">save</button>
 				<button type="button" wicket:id="cancel">cancel</button>
